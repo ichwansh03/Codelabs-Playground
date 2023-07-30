@@ -1,9 +1,13 @@
 package com.ichwan.gigihmodule.livedata.ui.livegame
 
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.TtsSpan
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 
 class LiveGameViewModel : ViewModel() {
 
@@ -17,8 +21,21 @@ class LiveGameViewModel : ViewModel() {
 
     //backing property
     private val _currentScrambleWord = MutableLiveData<String>()
-    val currentScrambledWord: LiveData<String>
-        get() = _currentScrambleWord
+    val currentScrambledWord: LiveData<Spannable> = _currentScrambleWord.map {
+        if (it == null) {
+            SpannableString("")
+        } else {
+            val scrammbledWord = it.toString()
+            val spannable: Spannable = SpannableString(scrammbledWord)
+            spannable.setSpan(
+                TtsSpan.VerbatimBuilder(scrammbledWord).build(),
+                0,
+                scrammbledWord.length,
+                Spannable.SPAN_INCLUSIVE_INCLUSIVE
+            )
+            spannable
+        }
+    }
 
     private var wordList: MutableList<String> = mutableListOf()
     private lateinit var currentWord: String
