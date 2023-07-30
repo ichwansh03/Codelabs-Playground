@@ -18,4 +18,18 @@
             android:id="@+id/action_gameFragment_to_modelActivity"
             app:destination="@id/modelActivity" />
     </fragment>
+    <activity
+        android:id="@+id/overviewActivity"
+        android:name="com.ichwan.gigihmodule.retrofit.OverviewActivity"
+        android:label="activity_overview"
+        tools:layout="@layout/activity_overview" />
+    <fragment
+        android:id="@+id/overviewFragment2"
+        android:name="com.ichwan.gigihmodule.retrofit.overview.OverviewFragment"
+        android:label="fragment_overview"
+        tools:layout="@layout/fragment_overview" >
+        <action
+            android:id="@+id/action_overviewFragment2_to_overviewActivity"
+            app:destination="@id/overviewActivity" />
+    </fragment>
 </navigation>

@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".viewmodel.ModelActivity"
+            android:name=".retrofit.OverviewActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,19 +25,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".openstreetmaps.MapsActivity"
+            android:name=".viewmodel.ModelActivity"
             android:exported="false">
-        </activity>
-        <activity
-            android:name=".workmanager.WorkActivity"
-            android:exported="false" />
-        <activity
-            android:name=".retrofit.DataActivity"
-            android:exported="false" />
-        <activity
-            android:name=".sharedpreference.PreferencesActivity"
-            android:exported="false"
-            android:theme="@style/Theme.GigihModule" />
+        </activity> <!-- <activity -->
+        <!-- android:name=".openstreetmaps.MapsActivity" -->
+        <!-- android:exported="false"/> -->
+        <!-- <activity -->
+        <!-- android:name=".workmanager.WorkActivity" -->
+        <!-- android:exported="false" /> -->
+        <!-- <activity -->
+        <!-- android:name=".retrofit.DataActivity" -->
+        <!-- android:exported="false" /> -->
+        <!-- <activity -->
+        <!-- android:name=".sharedpreference.PreferencesActivity" -->
+        <!-- android:exported="false" -->
+        <!-- android:theme="@style/Theme.GigihModule" /> -->
         <activity
             android:name=".MainActivity"
             android:exported="false"
