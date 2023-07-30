@@ -16,18 +16,20 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".livedata.LiveDataActivity"
+            android:exported="false" />
+        <activity
             android:name=".retrofit.OverviewActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".viewmodel.ModelActivity"
-            android:exported="false">
         </activity> <!-- <activity -->
+        <!-- android:name=".viewmodel.ModelActivity" -->
+        <!-- android:exported="false"/> -->
+        <!-- <activity -->
         <!-- android:name=".openstreetmaps.MapsActivity" -->
         <!-- android:exported="false"/> -->
         <!-- <activity -->

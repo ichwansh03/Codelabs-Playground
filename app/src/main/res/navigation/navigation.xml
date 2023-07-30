@@ -3,21 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/modelActivity">
+    app:startDestination="@id/overviewActivity">
 
-    <activity
-        android:id="@+id/modelActivity"
-        android:name="com.ichwan.gigihmodule.viewmodel.ModelActivity"
-        android:label="activity_model"
-        tools:layout="@layout/activity_model" />
-    <fragment
-        android:id="@+id/gameFragment"
-        android:name="com.ichwan.gigihmodule.viewmodel.ui.game.GameFragment"
-        android:label="GameFragment" >
-        <action
-            android:id="@+id/action_gameFragment_to_modelActivity"
-            app:destination="@id/modelActivity" />
-    </fragment>
     <activity
         android:id="@+id/overviewActivity"
         android:name="com.ichwan.gigihmodule.retrofit.OverviewActivity"
