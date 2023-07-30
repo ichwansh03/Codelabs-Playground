@@ -39,7 +39,7 @@ The following libraries are used in the project:
 
 ## Project Architecture and Techniques
 
-The Disaster App follows the MVVM (Model-View-ViewModel) architectural pattern to clearly separate concerns. The ViewModel serves as a bridge between the UI (View) and the data (Model). Data operations are handled using a Repository pattern, which abstracts the data source from the ViewModel. Dependency Injection is implemented using Koin, allowing for easy management of dependencies and enabling better testability of classes. View Binding is used to bind UI components in layout files, providing type-safe access to these components. Coroutines Flow and State Flow are employed to handle asynchronous operations and data streams efficiently. This approach simplifies handling background tasks and data updates while providing a more reactive and responsive user experience.
+The Project follows the MVVM (Model-View-ViewModel) architectural pattern to clearly separate concerns. The ViewModel serves as a bridge between the UI (View) and the data (Model). Data operations are handled using a Repository pattern, which abstracts the data source from the ViewModel. Dependency Injection is implemented using Koin, allowing for easy management of dependencies and enabling better testability of classes. View Binding is used to bind UI components in layout files, providing type-safe access to these components. Coroutines Flow and State Flow are employed to handle asynchronous operations and data streams efficiently. This approach simplifies handling background tasks and data updates while providing a more reactive and responsive user experience.
 
 
 ---
