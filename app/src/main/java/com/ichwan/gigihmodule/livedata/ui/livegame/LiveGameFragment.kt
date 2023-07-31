@@ -1,5 +1,6 @@
 package com.ichwan.gigihmodule.livedata.ui.livegame
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import androidx.fragment.app.viewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.ichwan.gigihmodule.R
 import com.ichwan.gigihmodule.databinding.FragmentLiveGameBinding
+import com.ichwan.gigihmodule.retrofit.OverviewActivity
 
 class LiveGameFragment : Fragment() {
 
@@ -41,7 +43,7 @@ class LiveGameFragment : Fragment() {
 
             submit.setOnClickListener { onSubmitWord() }
             skip.setOnClickListener { onSkipWord() }
-
+            test.setOnClickListener { startActivity(Intent(requireContext(), OverviewActivity::class.java)) }
         }
     }
 
