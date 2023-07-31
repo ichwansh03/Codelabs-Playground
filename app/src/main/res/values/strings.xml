@@ -23,4 +23,6 @@
     <string name="you_scored">You scored: %d</string>
     <string name="exit">Exit</string>
     <string name="play_again">Play Again</string>
+    <string name="hint_word">Word...</string>
+    <string name="empty_not_saved">Empty not saved!</string>
 </resources>
