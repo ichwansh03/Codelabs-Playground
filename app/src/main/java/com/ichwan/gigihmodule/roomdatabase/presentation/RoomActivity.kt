@@ -19,7 +19,6 @@ class RoomActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRoomBinding
 
-    private val newWordActivityRequestCode = 1
     private val adapter = WordListAdapter()
     private val wordViewModel: WordViewModel by viewModels{
         WordViewModelFactory((application as WordsApplication).repository)
@@ -29,11 +28,9 @@ class RoomActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent? = result.data
-                if (result.resultCode == newWordActivityRequestCode){
-                    data?.getStringExtra(NewWordActivity.EXTRA_REPLY)?.let { reply ->
-                        val word = Word(reply)
-                        wordViewModel.insert(word)
-                    }
+                data?.getStringExtra(NewWordActivity.EXTRA_REPLY)?.let {
+                    val word = Word(it)
+                    wordViewModel.insert(word)
                 }
             } else {
                 Toast.makeText(applicationContext, R.string.empty_not_saved, Toast.LENGTH_LONG).show()
