@@ -16,19 +16,21 @@
         android:theme="@style/Theme.GigihModule"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
         <activity
-            android:name=".roomdatabase.presentation.NewWordActivity"
-            android:exported="false" />
-        <activity
-            android:name=".roomdatabase.presentation.RoomActivity"
-            android:exported="true">
+            android:name=".workmanager.codelabs.WorkerActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".roomdatabase.presentation.NewWordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".roomdatabase.presentation.RoomActivity"
+            android:exported="false"/>
         <activity
             android:name=".livedata.LiveDataActivity"
             android:exported="false" /> <!-- <activity -->
