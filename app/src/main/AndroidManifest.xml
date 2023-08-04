@@ -3,8 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
+
+    <queries>
+        <package android:name="com.ichwan.gigihmodule.workmanager.codelabs"/>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:mimeType="image/png"/>
+        </intent>
+    </queries>
 
     <application
         android:name=".roomdatabase.di.WordsApplication"
