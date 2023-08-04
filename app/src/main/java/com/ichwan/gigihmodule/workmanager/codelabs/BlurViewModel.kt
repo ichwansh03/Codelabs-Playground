@@ -22,7 +22,7 @@ import com.ichwan.gigihmodule.workmanager.codelabs.workers.SaveImageToFileWorker
 class BlurViewModel(application: Application) : ViewModel() {
 
     private var imageUri: Uri? = null
-    private var outputUri: Uri? = null
+    var outputUri: Uri? = null
     private val workManager = WorkManager.getInstance(application)
     internal val outputWorkInfos: LiveData<List<WorkInfo>> = workManager.getWorkInfosByTagLiveData(TAG_OUTPUT)
 
