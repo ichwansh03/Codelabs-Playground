@@ -10,6 +10,7 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
 import com.google.common.util.concurrent.ListenableFuture
+import com.ichwan.gigihmodule.R
 import com.ichwan.gigihmodule.workmanager.codelabs.KEY_IMAGE_URI
 import java.lang.Thread.sleep
 
@@ -17,30 +18,22 @@ private const val TAG = "BlurWorker"
 class BlurWorker(context: Context, params: WorkerParameters) : Worker(context, params) {
 
     override fun doWork(): Result {
-        val resourceUri = inputData.getString(KEY_IMAGE_URI)
-        createStatusNotification("Blurring image", applicationContext)
 
-        sleep()
+        createStatusNotification("Bluring image", applicationContext)
 
         return try {
-            if (TextUtils.isEmpty(resourceUri)) {
-                Log.e(TAG, "Invalid input uri")
-                throw IllegalArgumentException("Invalid input uri")
-            }
 
-            val resolver = applicationContext.contentResolver
-
-            val picture = BitmapFactory.decodeStream(
-                resolver.openInputStream(Uri.parse(resourceUri)))
+            val picture = BitmapFactory.decodeResource(
+                applicationContext.resources,
+                R.drawable.android_cupcake)
 
             val output = blurBitmap(picture, applicationContext)
 
-            // Write bitmap to a temp file
             val outputUri = writeBitmapToFile(applicationContext, output)
 
-            val outputData = workDataOf(KEY_IMAGE_URI to outputUri.toString())
+            createStatusNotification("Output is $outputUri", applicationContext)
 
-            Result.success(outputData)
+            Result.success()
         } catch (throwable: Throwable) {
             Log.e(TAG, "Error applying blur")
             throwable.printStackTrace()
