@@ -1,5 +1,6 @@
 package com.ichwan.gigihmodule.workmanager.codelabs
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.ContentResolver
 import android.content.Context
@@ -52,11 +53,24 @@ class BlurViewModel(application: Application) : ViewModel() {
         //one time request
         //workManager.enqueue(OneTimeWorkRequest.from(BlurWorker::class.java))
 
+        //add WorkRequest to Cleanup temporary images
+        var continuation = workManager
+            .beginWith(OneTimeWorkRequest.Companion.from(CleanupWorker::class.java))
+
+        //add WorkRequest to blur the image
         val blurRequest = OneTimeWorkRequestBuilder<BlurWorker>()
             .setInputData(createInputDataForUri())
             .build()
 
-        workManager.enqueue(blurRequest)
+        continuation = continuation.then(blurRequest)
+
+        //add WorkRequest to save the image to the filesystem
+        val save = OneTimeWorkRequest.Builder(SaveImageToFileWorker::class.java).build()
+
+        continuation = continuation.then(save)
+
+        //actually start the work
+        continuation.enqueue()
 
         /*var continuation = workManager.beginUniqueWork(
             IMAGE_MANIPULATION_WORK_NAME,
