@@ -19,6 +19,11 @@ import com.ichwan.gigihmodule.workmanager.codelabs.workers.BlurWorker
 import com.ichwan.gigihmodule.workmanager.codelabs.workers.CleanupWorker
 import com.ichwan.gigihmodule.workmanager.codelabs.workers.SaveImageToFileWorker
 
+/**
+ * This view model stores all of the data needed to display the BlurActivity.
+ * It will also be the class where you start the background work using WorkManager.
+ * */
+
 class BlurViewModel(application: Application) : ViewModel() {
 
     private var imageUri: Uri? = null
@@ -43,7 +48,17 @@ class BlurViewModel(application: Application) : ViewModel() {
     }
 
     internal fun applyBlur(blurLevel: Int) {
-        var continuation = workManager.beginUniqueWork(
+
+        //one time request
+        //workManager.enqueue(OneTimeWorkRequest.from(BlurWorker::class.java))
+
+        val blurRequest = OneTimeWorkRequestBuilder<BlurWorker>()
+            .setInputData(createInputDataForUri())
+            .build()
+
+        workManager.enqueue(blurRequest)
+
+        /*var continuation = workManager.beginUniqueWork(
             IMAGE_MANIPULATION_WORK_NAME,
             ExistingWorkPolicy.REPLACE,
             OneTimeWorkRequest.Companion.from(CleanupWorker::class.java)
@@ -68,7 +83,7 @@ class BlurViewModel(application: Application) : ViewModel() {
             .addTag(TAG_OUTPUT)
             .build()
         continuation = continuation.then(save)
-        continuation.enqueue()
+        continuation.enqueue()*/
     }
 
     private fun uriOrNull(uriString: String?): Uri? {
