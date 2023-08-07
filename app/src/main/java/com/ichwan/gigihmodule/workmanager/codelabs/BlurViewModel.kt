@@ -72,32 +72,7 @@ class BlurViewModel(application: Application) : ViewModel() {
         //actually start the work
         continuation.enqueue()
 
-        /*var continuation = workManager.beginUniqueWork(
-            IMAGE_MANIPULATION_WORK_NAME,
-            ExistingWorkPolicy.REPLACE,
-            OneTimeWorkRequest.Companion.from(CleanupWorker::class.java)
-        )
 
-        for (i in 0 until blurLevel) {
-            val blurBuilder = OneTimeWorkRequestBuilder<BlurWorker>()
-
-            if (i == 0) {
-                blurBuilder.setInputData(createInputDataForUri())
-            }
-
-            continuation = continuation.then(blurBuilder.build())
-        }
-
-        val constraints = Constraints.Builder()
-            .setRequiresCharging(true)
-            .build()
-
-        val save = OneTimeWorkRequestBuilder<SaveImageToFileWorker>()
-            .setConstraints(constraints)
-            .addTag(TAG_OUTPUT)
-            .build()
-        continuation = continuation.then(save)
-        continuation.enqueue()*/
     }
 
     private fun uriOrNull(uriString: String?): Uri? {

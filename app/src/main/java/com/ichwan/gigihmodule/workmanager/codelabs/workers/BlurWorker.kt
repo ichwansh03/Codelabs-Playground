@@ -5,14 +5,10 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.text.TextUtils
 import android.util.Log
-import androidx.work.ListenableWorker
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
-import com.google.common.util.concurrent.ListenableFuture
-import com.ichwan.gigihmodule.R
 import com.ichwan.gigihmodule.workmanager.codelabs.KEY_IMAGE_URI
-import java.lang.Thread.sleep
 
 private const val TAG = "BlurWorker"
 class BlurWorker(context: Context, params: WorkerParameters) : Worker(context, params) {
@@ -22,6 +18,8 @@ class BlurWorker(context: Context, params: WorkerParameters) : Worker(context, p
         val resourceUri = inputData.getString(KEY_IMAGE_URI)
 
         createStatusNotification("Bluring image", applicationContext)
+
+        sleep()
 
         return try {
 
