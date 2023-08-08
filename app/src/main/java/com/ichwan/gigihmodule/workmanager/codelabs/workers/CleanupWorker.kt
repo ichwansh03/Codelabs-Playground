@@ -7,6 +7,10 @@ import androidx.work.WorkerParameters
 import com.ichwan.gigihmodule.workmanager.codelabs.OUTPUT_PATH
 import java.io.File
 
+/**
+ * Cleans up temporary files generated during blurring process
+ */
+
 private const val TAG = "CleanupWorker"
 class CleanupWorker(context: Context, params: WorkerParameters) : Worker(context, params) {
     override fun doWork(): Result {
