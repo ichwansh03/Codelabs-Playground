@@ -1,14 +1,13 @@
 package com.ichwan.gigihmodule.workmanager.codelabs
 
-import android.annotation.SuppressLint
 import android.app.Application
 import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
+import androidx.compose.ui.unit.Constraints
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.work.Constraints
 import androidx.work.Data
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequest
@@ -30,10 +29,11 @@ class BlurViewModel(application: Application) : ViewModel() {
     private var imageUri: Uri? = null
     var outputUri: Uri? = null
     private val workManager = WorkManager.getInstance(application)
-    internal val outputWorkInfos: LiveData<List<WorkInfo>> = workManager.getWorkInfosByTagLiveData(TAG_OUTPUT)
+    internal val outputWorkInfos: LiveData<List<WorkInfo>>
 
     init {
         imageUri = getImageUri(application.applicationContext)
+        outputWorkInfos = workManager.getWorkInfosByTagLiveData(TAG_OUTPUT)
     }
 
     internal fun cancelWork() {
@@ -72,8 +72,15 @@ class BlurViewModel(application: Application) : ViewModel() {
             continuation = continuation.then(blurBuilder.build())
         }
 
+        //create charging constraint
+        val constraints = androidx.work.Constraints.Builder()
+            .setRequiresCharging(true)
+            .build()
+
         //add WorkRequest to save the image to the filesystem
-        val save = OneTimeWorkRequest.Builder(SaveImageToFileWorker::class.java).build()
+        val save = OneTimeWorkRequest.Builder(SaveImageToFileWorker::class.java)
+            .addTag(TAG_OUTPUT)
+            .build()
 
         continuation = continuation.then(save)
 
