@@ -17,7 +17,7 @@ import java.lang.IllegalArgumentException
  */
 
 @DisplayName("Test from class Calculator")
-class CalculatorTest{
+class CalculatorTest : ParentCalculatorTest() {
 
     companion object {
         @BeforeAll
@@ -32,9 +32,6 @@ class CalculatorTest{
             println("all unit test finished")
         }
     }
-
-    private val calculator = Calculator()
-
     @BeforeEach
     fun setup(){
         println("before test begin")
