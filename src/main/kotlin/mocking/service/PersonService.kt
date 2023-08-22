@@ -2,6 +2,7 @@ package mocking.service
 
 import mocking.model.Person
 import mocking.repository.PersonRepository
+import java.util.UUID
 
 /**
  * menyimpan business logic
@@ -19,5 +20,17 @@ class PersonService(private val personRepository: PersonRepository) {
         } else {
             throw Exception("person not found")
         }
+    }
+
+    fun register(name: String): Person {
+        if (name.isBlank()){
+            throw IllegalArgumentException("name is blank")
+        }
+
+        val person = Person(UUID.randomUUID().toString(), name)
+
+        personRepository.insert(person)
+
+        return person
     }
 }

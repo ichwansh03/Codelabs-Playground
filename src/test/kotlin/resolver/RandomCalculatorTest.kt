@@ -1,11 +1,10 @@
 package resolver
 
 import ParentCalculatorTest
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.api.TestInfo
-import org.junit.jupiter.params.*
-import org.junit.jupiter.params.provider.ValueSource
 import java.util.Random
 import kotlin.test.assertEquals
 
@@ -32,11 +31,8 @@ class RandomCalculatorTest : ParentCalculatorTest() {
         assertEquals(value1 + value2, result)
     }
 
+    @Disabled("library unresolved not found")
     @DisplayName("Test Calculator with Parameterized")
-    @ParameterizedTest(
-        name = "{displayName} with data {0}"
-    )
-    @ValueSource(ints = [1, 2, 3, 4, 5])
     fun testParamter(value: Int){
         val result = value + value
         assertEquals(result, calculator.add(value, value))

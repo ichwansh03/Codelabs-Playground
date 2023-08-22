@@ -13,6 +13,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.jupiter.MockitoExtension
 import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
 
 /**
  * function test meng-cover semua kondisi dari class service
@@ -51,5 +52,27 @@ class PersonServiceTest {
         val person = personService.get("P001")
         assertEquals("P001", person.id)
         assertEquals("Ichwan", person.name)
+    }
+
+    @Test
+    fun testRegisterPersonNameIsBlank(){
+        assertThrows<IllegalArgumentException> {
+            personService.register("  ")
+        }
+    }
+
+    @Test
+    fun testRegisterSuccess() {
+        val person = personService.register("Ichwan")
+
+        assertEquals("Ichwan", person.name)
+        assertNotNull(person.id)
+
+        /**
+         * melakukan verifikasi agar ketika call function insert() maka test akan gagal
+         * karena ketika tidak call insert di productService maka test akan tetap jalan
+         * diusahakan ketika membuat function yg return valuenya Unit maka harus diverfikasi
+         */
+        Mockito.verify(personRepository, Mockito.times(1)).insert(Person(person.id, "Ichwan"))
     }
 }
