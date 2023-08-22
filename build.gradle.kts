@@ -11,6 +11,7 @@ repositories {
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     testImplementation(kotlin("test"))
     testImplementation("org.mockito:mockito-junit-jupiter:5.4.0")
 }
@@ -22,9 +23,10 @@ tasks.test {
 }
 
 tasks.register("integration-test", Test::class) {
-    useJUnitPlatform {
-        includeTags("integration-test")
-    }
+//    useJUnitPlatform {
+//        includeTags("integration-test")
+//    }
+    useJUnitPlatform {}
 }
 
 kotlin {
