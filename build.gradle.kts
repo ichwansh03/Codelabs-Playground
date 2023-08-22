@@ -12,6 +12,7 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    testImplementation("org.mockito:mockito-junit-jupiter:5.4.0")
 }
 
 tasks.test {
@@ -27,7 +28,7 @@ tasks.register("integration-test", Test::class) {
 }
 
 kotlin {
-    jvmToolchain(8)
+    jvmToolchain(17)
 }
 
 application {
